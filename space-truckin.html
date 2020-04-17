@@ -25,8 +25,20 @@
     </div>
     <div id="ships-controls">
       <details open>
+        <summary>Today's Headlines:</summary>
+        <div class="indent">
+        <p>
+          <script>randomHeadline();</script>
+        </p>
+        </div>
+      </details>
+      <details>
+        <summary>Finances: $5000 Cash on Hand</summary>
+        <table></table>
+      </details>
+      <details open>
         <summary>Cargo: 50/50 TEU available</summary>
-        <table style="width: 100%">
+        <table class="indent">
           <tr onclick="selectItem('cargo', 'consumer');">
             <td class="hidden"><input name="cargo" type="radio" value="consumer"></td>
             <td><label for="consumer">Consumer Goods</label></td>
@@ -41,7 +53,7 @@
           </tr>
           <tr onclick="selectItem('cargo', 'ore');">
             <td class="hidden"><input name="cargo" type="radio" value="ore"></td>
-            <td><label for="ore">Ore</label></td>
+            <td><label for="ore">Ore & Minerals</label></td>
             <td class="numeric">0</td>
             <td class="numeric">$30,000</td>
           </tr>
@@ -53,23 +65,30 @@
           </tr>
         </table>
 
-        <p class="indent">
+        <p class="justify-center">
           <button type="button">Buy</button>
           <input type="number" value=0>
           <button type="button">Sell</button>
         </p>
       </details>
       <details>
-        <summary>Defenses: fair</summary>
+        <summary>Defensive Capability: <span class="justify-right">Fair</span></summary>
         <p class="indent">
           Shields: 100%<br>
           Railguns: 0
         </p>
       </details>
       <details>
-        <summary>Helm: Docked at Earth</summary>
+        <summary>Helm: Currently docked at Shreveport Space Elevator, Earth</summary>
         <p class="indent">
-          Choose a destination:
+          Destination:
+          <button title="Earth">ETH</button>
+          <button title="Luna">LUN</button>
+          <button title="Venus">VEN</button>
+          <button title="Mars">MRS</button>
+          <button title="Ceres">CER</button>
+          <button title="Ganymede">GAN</button>
+          <button title="Titan">TTN</button>
         </p>
       </details>
     </div>

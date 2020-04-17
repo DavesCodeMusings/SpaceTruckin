@@ -44,10 +44,6 @@ button {
   color: black;
 }
 
-img {
-  border-radius: 25px;
-}
-
 .indent {
   margin-left: 1em;
 }
@@ -56,6 +52,14 @@ input {
   background: dimgray;
   color: lightgray;
   border-radius: 5px;
+}
+
+.justify-right {
+  text-align: right;
+}
+
+.justify-center {
+  text-align: center;
 }
 
 .numeric {
@@ -70,6 +74,10 @@ input {
   text-align: center;
 }
 
+table {
+  width: 90%;
+}
+
 #viewport {
   background: dimgray;
   text-align: center;
@@ -77,6 +85,7 @@ input {
 }
 
 #viewport-image {
+  border-radius: 25px;
   display: block;
   height: auto;
   margin-left: auto;
@@ -94,4 +103,7 @@ input {
     float: left;
     width: 40%
   }
+  #viewport-image {
+    border: 1em solid dimgray;
+  }  
 }
