@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="css/space-truckin.css" rel="stylesheet" type="text/css">
+  <script src="js/space-truckin.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Space Truckin'</h1>
+  </header>
+  <main>
+      <img id="viewport-image" src="images/title.png">
+  </main>
+  <aside>
+    <div id="ships-name">
+      <p>Welcome to Space Truckin', the Solar System trading game.  Register your ship's name and get truckin'.</p>
+      <input id="name-input" maxlength=35 type="text" placeholder="Enter Ship's Name">
+      <button onclick="registerShipName(document.getElementById('ships-name')); revealHidden(document.getElementById('ships-controls'));" type="button">Register Ship</button>
+    </div>
+    <div id="ships-controls">
+      <details open>
+        <summary>Cargo: 50/50 TEU available</summary>
+        <table style="width: 100%">
+          <tr onclick="selectItem('cargo', 'consumer');">
+            <td><input class="hidden" name="cargo" type="radio" value="consumer"></td>
+            <td><label for="consumer">Consumer Goods</label></td>
+            <td class="numeric">0</td>
+            <td class="numeric">$500</td>
+          </tr>
+          <tr onclick="selectItem('cargo', 'food');">
+            <td><input class="hidden" name="cargo" type="radio" value="food"></td>
+            <td><label for="food">Foodstuffs</label></td>
+            <td class="numeric">0</td>
+            <td class="numeric">$1200</td>
+          </tr>
+          <tr onclick="selectItem('cargo', 'ore');">
+            <td><input class="hidden" name="cargo" type="radio" value="ore"></td>
+            <td><label for="ore">Ore</label></td>
+            <td class="numeric">0</td>
+            <td class="numeric">$30,000</td>
+          </tr>
+          <tr onclick="selectItem('cargo', 'heavy');">
+            <td><input class="hidden" name="cargo" type="radio" value="heavy"></td>
+            <td><label for="heavy">Heavy Equipment</label></td>
+            <td class="numeric">0</td>
+            <td class="numeric">$100,000</td>
+          </tr>
+        </table>
+
+        <p class="indent">
+          <button type="button">Buy</button>
+          <input type="number" value=0>
+          <button type="button">Sell</button>
+        </p>
+      </details>
+      <details>
+        <summary>Defenses: fair</summary>
+        <p class="indent">
+          Shields: 100%<br>
+          Railguns: 0
+        </p>
+      </details>
+      <details>
+        <summary>Helm: Earth</summary>
+        <p class="indent">
+          Choose a destination:
+        </p>
+      </details>
+    </div>
+  </aside>
+  <footer>
+    <p style="text-align: center;">
+      <a href="" target="_blank">Space Truckin' at GitHub</a><br>
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "xolonium";
+  src: url("../fonts/Xolonium-Regular.otf");
+}
+
+body {
+  background: black;
+  color: lightgreen;
+  font-family: xolonium;
+}
+
+header {
+  clear: both;
+  text-align: center;
+}
+
+main {
+  float: left;
+  width: 100%
+}
+
+aside {
+  float: left;
+  width: 100%
+}
+
+footer {
+  clear: both;
+  text-align: center;
+}
+
+button {
+  border-radius: 5px;
+  background: dimgray;
+  color: lightgreen;
+}
+
+.hidden {
+  display: none;
+}
+
+.highlight {
+  background: lightgreen;
+  color: black;
+}
+
+img {
+  border-radius: 25px;
+}
+
+.indent {
+  margin-left: 1em;
+}
+
+input {
+  background: dimgray;
+  color: lightgray;
+  border-radius: 5px;
+}
+
+.numeric {
+  text-align: right;
+}
+
+#ships-controls {
+  display: none;
+}
+
+#ships-name {
+  text-align: center;
+}
+
+#viewport {
+  background: dimgray;
+  text-align: center;
+  width: 100%;
+}
+
+#viewport-image {
+  display: block;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
