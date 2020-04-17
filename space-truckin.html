@@ -19,7 +19,7 @@
   </main>
   <aside>
     <div id="ships-name">
-      <p>Welcome to Space Truckin', the Solar System trading game.  Register your ship's name and get truckin'.</p>
+      <p>Welcome to Space Truckin', the Solar System trading game.  Register your ship's name and let's get truckin'.</p>
       <input id="name-input" maxlength=35 type="text" placeholder="Enter Ship's Name">
       <button onclick="registerShipName(document.getElementById('ships-name')); revealHidden(document.getElementById('ships-controls'));" type="button">Register Ship</button>
     </div>
@@ -28,25 +28,25 @@
         <summary>Cargo: 50/50 TEU available</summary>
         <table style="width: 100%">
           <tr onclick="selectItem('cargo', 'consumer');">
-            <td><input class="hidden" name="cargo" type="radio" value="consumer"></td>
+            <td class="hidden"><input name="cargo" type="radio" value="consumer"></td>
             <td><label for="consumer">Consumer Goods</label></td>
             <td class="numeric">0</td>
             <td class="numeric">$500</td>
           </tr>
           <tr onclick="selectItem('cargo', 'food');">
-            <td><input class="hidden" name="cargo" type="radio" value="food"></td>
+            <td class="hidden"><input name="cargo" type="radio" value="food"></td>
             <td><label for="food">Foodstuffs</label></td>
             <td class="numeric">0</td>
             <td class="numeric">$1200</td>
           </tr>
           <tr onclick="selectItem('cargo', 'ore');">
-            <td><input class="hidden" name="cargo" type="radio" value="ore"></td>
+            <td class="hidden"><input name="cargo" type="radio" value="ore"></td>
             <td><label for="ore">Ore</label></td>
             <td class="numeric">0</td>
             <td class="numeric">$30,000</td>
           </tr>
           <tr onclick="selectItem('cargo', 'heavy');">
-            <td><input class="hidden" name="cargo" type="radio" value="heavy"></td>
+            <td class="hidden"><input name="cargo" type="radio" value="heavy"></td>
             <td><label for="heavy">Heavy Equipment</label></td>
             <td class="numeric">0</td>
             <td class="numeric">$100,000</td>
@@ -67,7 +67,7 @@
         </p>
       </details>
       <details>
-        <summary>Helm: Earth</summary>
+        <summary>Helm: Docked at Earth</summary>
         <p class="indent">
           Choose a destination:
         </p>

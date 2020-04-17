@@ -26,6 +26,8 @@ aside {
 
 footer {
   clear: both;
+  position: fixed;
+  bottom: 0;
   text-align: center;
 }
 
