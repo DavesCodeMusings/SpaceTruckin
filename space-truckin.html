@@ -15,53 +15,75 @@
     <h1>Space Truckin'</h1>
   </header>
   <main>
-      <img id="viewport-image" src="images/title.png">
+    <img id="viewport-image" src="images/title.png">
   </main>
   <aside>
-    <div id="ships-name">
-      <p>Welcome to Space Truckin', the Solar System trading game.  Register your ship's name and let's get truckin'.</p>
-      <input id="name-input" maxlength=35 type="text" placeholder="Enter Ship's Name">
-      <button onclick="registerShipName(document.getElementById('ships-name')); revealHidden(document.getElementById('ships-controls'));" type="button">Register Ship</button>
+    <div id="ship-registration">
+      <p>Welcome to Space Truckin', the Solar System trading game. Register your ship's name and let's get truckin'.</p>
+      <input id="ship-name-input" maxlength=35 type="text" placeholder="Enter Ship's Name">
+      <button
+        onclick="registerShip(document.getElementById('ship-name-input').value);
+          document.getElementById('ship-registration').style.display = 'none';
+          document.getElementById('ship-controls').style.display = 'block';
+          updateShipInfo();"
+        type="button">Register Ship</button>
     </div>
-    <div id="ships-controls">
+    <div id="ship-controls">
+      <p id="ship-name"></p>
       <details open>
-        <summary>Today's Headlines:</summary>
-        <div class="indent">
-        <p>
+        <summary>News:</summary>
+        <p class="indent">
           <script>randomHeadline();</script>
         </p>
-        </div>
       </details>
       <details>
-        <summary>Finances: $5000 Cash on Hand</summary>
-        <table></table>
+        <summary onclick="finances.update();">Finances: <span style="float: right;">5000</span></summary>
+        <table class="indent">
+          <tr>
+            <td>Cash:</td>
+            <td class="numeric" id="finances-cash">5000</td>
+          </tr>
+          <tr>
+            <td>Bank:</td>
+            <td class="numeric" id="finances-bank">1000</td>
+          </tr>
+          <tr>
+            <td>Debt:</td>
+            <td class="numeric" id="finances-debt">(9000)</td>
+          </tr>
+          <tr>
+            <td>Total:</td>
+            <td class="numeric" id="finances-total">(3000)</td>
+          </tr>
+        </table>
       </details>
-      <details open>
-        <summary>Cargo: 50/50 TEU available</summary>
+
+      <details>
+        <summary>Cargo: <span style="float: right;">50/50 TEU</span></summary>
         <table class="indent">
           <tr onclick="selectItem('cargo', 'consumer');">
             <td class="hidden"><input name="cargo" type="radio" value="consumer"></td>
             <td><label for="consumer">Consumer Goods</label></td>
             <td class="numeric">0</td>
-            <td class="numeric">$500</td>
+            <td class="numeric">500</td>
           </tr>
           <tr onclick="selectItem('cargo', 'food');">
             <td class="hidden"><input name="cargo" type="radio" value="food"></td>
             <td><label for="food">Foodstuffs</label></td>
             <td class="numeric">0</td>
-            <td class="numeric">$1200</td>
+            <td class="numeric">1200</td>
           </tr>
           <tr onclick="selectItem('cargo', 'ore');">
             <td class="hidden"><input name="cargo" type="radio" value="ore"></td>
             <td><label for="ore">Ore & Minerals</label></td>
             <td class="numeric">0</td>
-            <td class="numeric">$30,000</td>
+            <td class="numeric">30,000</td>
           </tr>
           <tr onclick="selectItem('cargo', 'heavy');">
             <td class="hidden"><input name="cargo" type="radio" value="heavy"></td>
             <td><label for="heavy">Heavy Equipment</label></td>
             <td class="numeric">0</td>
-            <td class="numeric">$100,000</td>
+            <td class="numeric">100,000</td>
           </tr>
         </table>
 
@@ -72,16 +94,17 @@
         </p>
       </details>
       <details>
-        <summary>Defensive Capability: <span class="justify-right">Fair</span></summary>
+        <summary>Defenses: <span style="float: right;">FAIR</span></summary>
         <p class="indent">
           Shields: 100%<br>
           Railguns: 0
         </p>
       </details>
       <details>
-        <summary>Helm: Currently docked at Shreveport Space Elevator, Earth</summary>
+        <summary>Helm: <span style="float: right;">ETH</span></summary>
+        <p class="indent">Docked at Shreveport Space Elevator, Earth</p>
         <p class="indent">
-          Destination:
+          Set new course, Captain?<br>
           <button title="Earth">ETH</button>
           <button title="Luna">LUN</button>
           <button title="Venus">VEN</button>
@@ -93,7 +116,7 @@
       </details>
     </div>
   </aside>
-  <footer></footer>   
+  <footer></footer>
 </body>
 
 </html>

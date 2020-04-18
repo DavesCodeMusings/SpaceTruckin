@@ -35,6 +35,11 @@ button {
   color: lightgreen;
 }
 
+details {
+  border-top: 1px dotted lightgreen;
+  padding-bottom: 0.5em;
+}
+
 .hidden {
   display: none;
 }
@@ -54,28 +59,21 @@ input {
   border-radius: 5px;
 }
 
-.justify-right {
-  text-align: right;
-}
-
-.justify-center {
-  text-align: center;
-}
-
 .numeric {
   text-align: right;
 }
 
-#ships-controls {
+#ship-controls {
   display: none;
 }
 
-#ships-name {
+#ship-name {
   text-align: center;
 }
 
 table {
-  width: 90%;
+  padding-right: 1em;
+  width: 100%;
 }
 
 #viewport {
@@ -85,6 +83,7 @@ table {
 }
 
 #viewport-image {
+  border: 2px solid lightgreen;
   border-radius: 25px;
   display: block;
   height: auto;
@@ -96,14 +95,11 @@ table {
 @media screen and (min-width: 768px) {
   main {
     float: left;
-    width: 50%
+    width: 45%
   }
 
   aside {
     float: left;
-    width: 40%
+    width: 45%
   }
-  #viewport-image {
-    border: 1em solid dimgray;
-  }  
 }
