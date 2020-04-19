@@ -1,0 +1,97 @@
+/*
+  Make sure width and height measurements include padding and borders.
+*/
+* {
+  box-sizing: border-box;
+}
+
+/*
+  Import a nice script font to complement the outer space theme.
+  From: https://fontlibrary.org/en/font/xolonium/
+*/
+@font-face {
+  font-family: "xolonium";
+  src: url("fonts/Xolonium-Regular.otf");
+}
+
+body {
+  background: black;
+  color: lightgreen;
+  font-family: xolonium;
+}
+
+header {
+  clear: both;
+  text-align: center;
+}
+
+main {
+  width: 100%
+}
+
+aside {
+  width: 100%
+}
+
+button {
+  border-radius: 5px;
+  background-image: linear-gradient(black, gray, black);
+  color: lightgreen;
+}
+
+details {
+  border-top: 1px dotted lightgreen;
+  padding-bottom: 0.5em;
+}
+
+details p {
+  margin-left: 1em;
+  padding-right: 1em;
+}
+
+details table {
+  margin-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+}
+
+details input[type="number"] {
+  background: black;
+  color: lightgray;
+  border-radius: 5px;
+  width: 6em;
+}
+
+details input[type="radio"] {
+  display: none;
+}
+
+.nav-button {
+  width: 3em;
+}
+
+.numeric {
+  text-align: right;
+}
+
+.numeric-controller {
+  text-align: center;
+}
+
+#news-summary, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
+  float: right;
+}
+
+#ship-name {
+  text-align: center;
+}
+
+#viewscreen {
+  border: 2px solid lightgreen;
+  border-radius: 25px;
+  display: block;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}

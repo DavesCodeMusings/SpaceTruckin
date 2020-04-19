@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+  <title>Space Truckin'</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="space-truckin.css" rel="stylesheet" type="text/css">
+  <script src="script.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Space Truckin'</h1>
+  </header>
+
+  <main>
+    <img id="viewscreen" src="images/earth.png">
+  </main>
+
+  <aside>
+    <p id="ship-name">SS Botany Bay</p>
+    <details>
+      <summary>News: <span id="news-summary">1 MSG</span></summary>
+      <p>
+        There's a sale on breakfast burritos!
+      </p>
+    </details>
+
+    <!-- Captain's Finances -->
+
+    <details>
+      <summary>Finances: <span id="finance-summary">5000</summary>
+      <table>
+        <tr>
+          <td>Cash:</td>
+          <td>5000</td>
+        </tr>
+        <tr>
+          <td>Bank:</td>
+          <td>1000</td>
+        </tr>
+        <tr>
+          <td>Debt:</td>
+          <td>(9000)</td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td>(3000)</td>
+        </tr>
+      </table>
+      <p>
+        <button>Deposit</button>
+        <input type="number">
+        <button>Withdrawl</button>
+        <button>Pay Debt</button>
+      </p>
+    </details>
+
+    <!-- Ship's Cargo -->
+
+    <details>
+      <summary>Cargo: <span id="cargo-summary">50/50 TEU</summary>
+      <table>
+        <tr>
+          <td><input name="cargo" type="radio" value="consumer"></td>
+          <td><label for="consumer">Consumer Goods</label></td>
+          <td>0</td>
+          <td>500</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="food"></td>
+          <td><label for="food">Foodstuffs</label></td>
+          <td>0</td>
+          <td>1200</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="ore"></td>
+          <td><label for="ore">Ore & Minerals</label></td>
+          <td>0</td>
+          <td>30,000</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="heavy"></td>
+          <td><label for="heavy">Heavy Equipment</label></td>
+          <td>0</td>
+          <td>100,000</td>
+        </tr>
+      </table>
+      <p>
+        <button>Buy</button>
+        <input type="number">
+        <button>Sell</button>
+      </p>
+    </details>
+
+    <!-- Ship's Defenses -->
+
+    <details>
+      <summary>Defenses: <span id="defense-summary">FAIR</summary>
+      <table>
+        <tr>
+          <td>Shields:</td>
+          <td>100%</td>
+        </tr>
+        <tr>
+          <td>Railguns:</td>
+          <td> 0</td>
+        </tr>
+      </table>
+    </details>
+
+    <!-- Navigation -->
+
+    <details>
+      <summary>Helm: <span id="helm-summary">ETH</span></summary>
+      <p>Shreveport Space Elevator, Earth</p>
+      <p>
+        Set a new course, Captain?<br>
+        <button title="Earth">ETH</button>
+        <button title="Luna">LUN</button>
+        <button title="Venus">VEN</button>
+        <button title="Mars">MRS</button>
+        <button title="Ceres">CER</button>
+        <button title="Ganymede">GAN</button>
+        <button title="Titan">TTN</button>
+      </p>
+    </details>
+  </aside>
+
+  <footer></footer>
+
+</body>
+
+</html>

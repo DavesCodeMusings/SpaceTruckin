@@ -1,0 +1,57 @@
+/*
+  Make sure width and height measurements include padding and borders.
+*/
+* {
+  box-sizing: border-box;
+}
+
+/*
+  Import a nice script font to complement the outer space theme.
+  From: https://fontlibrary.org/en/font/xolonium/
+*/
+@font-face {
+  font-family: "xolonium";
+  src: url("fonts/Xolonium-Regular.otf");
+}
+
+body {
+  background: black;
+  color: lightgreen;
+  font-family: xolonium;
+}
+
+header {
+  clear: both;
+  text-align: center;
+}
+
+main {
+  width: 100%
+}
+
+aside {
+  width: 100%
+}
+
+details {
+  border-top: 1px dotted lightgreen;
+  padding-bottom: 0.5em;
+}
+
+#news-summary, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
+  float: right;
+}
+
+#ship-name {
+  text-align: center;
+}
+
+#viewscreen {
+  border: 2px solid lightgreen;
+  border-radius: 25px;
+  display: block;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}

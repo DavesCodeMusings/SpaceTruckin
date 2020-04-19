@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+  <title>Space Truckin'</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="space-truckin.css" rel="stylesheet" type="text/css">
+  <script src="space-truckin.js" type="text/javascript"></script>
+</head>
+
+<body onload="openDetailsOnWideScreens(); preloadImages();">
+  <header>
+  </header>
+
+  <main>
+    <h1 id="title">Space Truckin'</h1>
+    <img id="viewscreen" src="images/mars.png">
+  </main>
+
+  <aside>
+    <h1 id="ship-name">SS Botany Bay</h1>
+    <details>
+      <summary>News: <span id="news-summary">1 MSG</span></summary>
+      <p>
+        There's a sale on breakfast burritos!
+      </p>
+    </details>
+
+    <!-- Captain's Finances -->
+
+    <details>
+      <summary>Finances: <span id="finance-summary">5000</summary>
+      <table>
+        <tr>
+          <td>Cash:</td>
+          <td class="numeric">5000</td>
+        </tr>
+        <tr>
+          <td>Bank:</td>
+          <td class="numeric">1000</td>
+        </tr>
+        <tr>
+          <td>Debt:</td>
+          <td class="numeric">(9000)</td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td class="numeric">(3000)</td>
+        </tr>
+      </table>
+      <p class="numeric-controller">
+        <button>Deposit</button>
+        <input placeholder="cash" type="number">
+        <button>Withdrawl</button>
+        <button>Pay Debt</button>
+      </p>
+    </details>
+
+    <!-- Ship's Cargo -->
+
+    <details>
+      <summary>Cargo: <span id="cargo-summary">50/50 TEU</summary>
+      <table>
+        <tr>
+          <td><input name="cargo" type="radio" value="consumer"></td>
+          <td><label for="consumer">Consumer Goods</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">500</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="food"></td>
+          <td><label for="food">Foodstuffs</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">1200</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="ore"></td>
+          <td><label for="ore">Ore & Minerals</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">30,000</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="heavy"></td>
+          <td><label for="heavy">Heavy Equipment</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">100,000</td>
+        </tr>
+      </table>
+      <p class="numeric-controller">
+        <button>Buy</button>
+        <input type="number">
+        <button>Sell</button>
+      </p>
+    </details>
+
+    <!-- Ship's Defenses -->
+
+    <details>
+      <summary>Defenses: <span id="defense-summary">FAIR</summary>
+      <table>
+        <tr>
+          <td>Shields:</td>
+          <td class="numeric">100%</td>
+        </tr>
+        <tr>
+          <td>Railguns:</td>
+          <td class="numeric">0</td>
+        </tr>
+      </table>
+    </details>
+
+    <!-- Navigation -->
+
+    <details>
+      <summary>Helm: <span id="helm-summary">MRS</span></summary>
+      <p>UAC Cargo Terminal, Mars</p>
+      <p>
+        Set a new course, Captain?<br>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('earth') }, 3000);" title="Earth">ETH</button>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('luna') }, 3000);" title="Luna">LUN</button>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('venus') }, 3000);" title="Venus">VEN</button>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('mars') }, 3000);" title="Mars">MRS</button>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('ceres') }, 3000);" title="Ceres">CER</button>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('jupiter') }, 3000);" title="Ganymede">GAN</button>
+        <button class="nav-button" onclick="setImage('starfield'); setTimeout(function(){ setImage('saturn') }, 3000);" title="Titan">TTN</button>
+      </p>
+    </details>
+  </aside>
+
+  <footer></footer>
+
+</body>
+
+</html>

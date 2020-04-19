@@ -1,0 +1,6 @@
+/*
+  Make sure width and height measurements include padding and borders.
+*/
+* {
+  box-sizing: border-box;
+}
