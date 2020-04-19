@@ -66,16 +66,16 @@ details input[type="radio"] {
   display: none;
 }
 
+.input-group {
+  text-align: center;
+}
+
 .nav-button {
   width: 3em;
 }
 
 .numeric {
   text-align: right;
-}
-
-.numeric-controller {
-  text-align: center;
 }
 
 #news-summary, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {

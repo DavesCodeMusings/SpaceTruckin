@@ -14,9 +14,9 @@ function openDetailsOnWideScreens() {
 }
 
 /* Switch image on the view screen. */
-function setImage(imageName) {
+function setImage(imageFileName) {
   let viewscreen = document.getElementById('viewscreen');
-  viewscreen.src = 'images/' + imageName + '.png';
+  viewscreen.src = 'images/' + imageFileName;
 }
 
 /* Pull images into local cache for faster transitions. */
