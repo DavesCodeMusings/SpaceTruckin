@@ -114,17 +114,17 @@
     <!-- Navigation -->
 
     <details>
-      <summary>Helm: <span id="helm-summary">MRS</span></summary>
-      <p>UAC Cargo Terminal, Mars</p>
+      <summary>Helm: <span id="helm-port-code">MRS</span></summary>
+      <p id="helm-location-name">UAC Cargo Terminal, Mars</p>
       <p>Set new course, Captain?</p>
       <p class="input-group">
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(1) }, 3000);" title="Earth">ETH</button>
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(2) }, 3000);" title="Luna">LUN</button>
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(3) }, 3000);" title="Venus">VEN</button>
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(4) }, 3000);" title="Mars">MRS</button>
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(5) }, 3000);" title="Ceres">CER</button>
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(6) }, 3000);" title="Ganymede">GAN</button>
-        <button class="nav-button" onclick="changeLocation(0); setTimeout(function(){ changeLocation(7) }, 3000);" title="Titan">TTN</button>
+        <button class="nav-button" onclick="updateLocation(1);" title="Earth">ETH</button>
+        <button class="nav-button" onclick="updateLocation(2);" title="Luna">LUN</button>
+        <button class="nav-button" onclick="updateLocation(3);" title="Venus">VEN</button>
+        <button class="nav-button" onclick="updateLocation(4);" title="Mars">MRS</button>
+        <button class="nav-button" onclick="updateLocation(5);" title="Ceres">CER</button>
+        <button class="nav-button" onclick="updateLocation(6);" title="Ganymede">GAN</button>
+        <button class="nav-button" onclick="updateLocation(7);" title="Titan">TTN</button>
       </p>
     </details>
   </aside>

@@ -32,3 +32,8 @@ Perviously, we used objects, and arrays of objects, with names to access
 data. In this stage, since it's a simple numeric sequence, we can use a basic
 array to represent the months in a year. The thing to remember is that arrays
 start at zero while months start at one, so January will be 0 and so on.
+
+Even with all of this, we still need a way to track the current month and
+year. We could make calendar into an object and add another couple properties
+for the month and the year, or we can keep it separate. For now, it is a
+separate variable.
