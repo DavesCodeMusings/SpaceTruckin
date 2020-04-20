@@ -4,7 +4,7 @@
   adding an attribut of 'open=true'.
 */
 function openDetailsOnWideScreens() {
-  let mediaQueryList = window.matchMedia('(min-width: 768px)');
+  let mediaQueryList = window.matchMedia('(min-width: 1200px)');
   if (mediaQueryList.matches) {
     let detailsElements = document.getElementsByTagName('details');
     for (let i=0; i<detailsElements.length; i++) {
