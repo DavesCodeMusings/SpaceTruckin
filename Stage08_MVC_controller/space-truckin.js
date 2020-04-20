@@ -9,7 +9,7 @@ function openDetailsOnWideScreens() {
   let mediaQueryList = window.matchMedia('(min-width: 1200px)');
   if (mediaQueryList.matches) {
     let detailsElements = document.getElementsByTagName('details');
-    for (let i=0; i<detailsElements.length; i++) {
+    for (let i = 0; i < detailsElements.length; i++) {
       detailsElements[i].setAttribute('open', true);
     }
   }
@@ -31,7 +31,7 @@ function preloadImages() {
 
 /* The ship we're piloting */
 var ship = {
-  'name': '',
+  'name': 'SS Botany Bay',
   'cargoCapacity': 50,
   'guns': 0,
   'shieldStrength': 100,
@@ -64,7 +64,7 @@ var finances = {
   'debt': 0,
 };
 
-const months = [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ];
+const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
 var todaysDate = {
   'month': 0,
@@ -79,30 +79,33 @@ function setImage(imageFileName) {
   viewscreen.src = 'images/' + imageFileName;
 }
 
-function incrementDate() {
+function updateNews() {
   todaysDate.month += 1;
-  if (todaysDate.month == 12 ) {
+  if (todaysDate.month == 12) {
     todaysDate.year += 1;
     todaysDate.month = 0;
   }
-  let currentDate = document.getElementById('current-date');
+  let currentDate = document.getElementById('news-date');
   currentDate.innerHTML = months[todaysDate.month] + ' ' + todaysDate.year;
 }
 
 function updateLocation(newLocation) {
-  let helmPortCode = document.getElementById('helm-port-code');
-  let helmLocationName = document.getElementById('helm-location-name');
+  if (newLocation != ship.location) {
+    let helmPortCode = document.getElementById('helm-port-code');
+    let helmLocationName = document.getElementById('helm-location-name');
 
-  // Show the in-flight starfield while traveling.
-  setImage('starfield.png');
-  helmPortCode.innerHTML = locations[0].portCode;
-  helmLocationName.innerHTML = locations[0].name;
+    // Show the in-flight starfield while traveling.
+    setImage('starfield.png');
+    helmPortCode.innerHTML = locations[0].portCode;
+    helmLocationName.innerHTML = locations[0].name;
 
-  // After a 'flight time' delay, update with new picture and info.
-  setTimeout(function() {
-    incrementDate();
-    setImage(locations[newLocation].image);
-    helmPortCode.innerHTML = locations[newLocation].portCode;
-    helmLocationName.innerHTML = locations[newLocation].name;
-  }, 3000);
+    // After a 'flight time' delay, update with new picture and info.
+    setTimeout(function () {
+      updateNews();
+      ship.location = newLocation;
+      setImage(locations[newLocation].image);
+      helmPortCode.innerHTML = locations[newLocation].portCode;
+      helmLocationName.innerHTML = locations[newLocation].name;
+    }, 3000);
+  }
 }

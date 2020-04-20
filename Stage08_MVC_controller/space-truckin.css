@@ -78,7 +78,7 @@ details input[type="radio"] {
   text-align: right;
 }
 
-#current-date, #finance-summary, #cargo-summary, #defense-summary, #helm-port-code {
+#news-date, #finance-wallet, #cargo-summary, #defense-summary, #helm-port-code {
   float: right;
 }
 
