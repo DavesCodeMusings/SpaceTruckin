@@ -36,7 +36,7 @@ var ship = {
   'guns': 0,
   'shieldStrength': 100,
   'location': 1
-}
+};
 
 /* Oh, the places you will go! */
 const locations = [
@@ -62,12 +62,14 @@ var finances = {
   'cash': 5000,
   'bank': 0,
   'debt': 0,
-}
+};
+
+const calendar = [ 'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC' ];
 
 /* Controlling our universe */
 
 /* Switch image on the view screen. */
-function changeLocation(location) {
+function setImage(imageFileName) {
   let viewscreen = document.getElementById('viewscreen');
-  viewscreen.src = 'images/' + locations[location].image;
+  viewscreen.src = 'images/' + imageFileName;
 }

@@ -67,7 +67,7 @@ var finances = {
 /* Controlling our universe */
 
 /* Switch image on the view screen. */
-function changeLocation(location) {
+function setImage(imageFileName) {
   let viewscreen = document.getElementById('viewscreen');
-  viewscreen.src = 'images/' + locations[location].image;
+  viewscreen.src = 'images/' + imageFileName;
 }

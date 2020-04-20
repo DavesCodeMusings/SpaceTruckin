@@ -13,12 +13,6 @@ function openDetailsOnWideScreens() {
   }
 }
 
-/* Switch image on the view screen. */
-function setImage(imageFileName) {
-  let viewscreen = document.getElementById('viewscreen');
-  viewscreen.src = 'images/' + imageFileName;
-}
-
 /* Pull images into local cache for faster transitions. */
 function preloadImages() {
   var starfieldImg = new Image('images/starfield.png');
@@ -29,4 +23,10 @@ function preloadImages() {
   var ceresImg = new Image('images/ceres.png');
   var jupiterImg = new Image('images/jupiter.png');
   var saturnImg = new Image('images/saturn.png');
+}
+
+/* Switch image on the view screen. */
+function setImage(imageFileName) {
+  let viewscreen = document.getElementById('viewscreen');
+  viewscreen.src = 'images/' + imageFileName;
 }

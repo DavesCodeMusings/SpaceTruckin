@@ -26,4 +26,5 @@ and ending tags (e.g. <p>innerHTML</p>)
 We'll also need another model to describe months in a twelve month calendar.
 Perviously we used objects, and arrays of objects, with names to access data.
 This time, since it's a simple numeric sequence, we can use a basic array to
-represent the months in a year.
+represent the months in a year. The thing to remember is that arrays start
+at zero while months start at one, so January will be 0 and so on.
