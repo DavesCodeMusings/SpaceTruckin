@@ -39,24 +39,24 @@ var ship = {
 }
 
 /* Oh, the places you will go! */
-const locations = {
-  0: { 'portCode': '---', 'name': 'In Transit', 'image': 'starfield.png' },
-  1: { 'portCode': 'ETH', 'name': 'Shreveport Space Elevator, Earth', 'image': 'earth.png' },
-  2: { 'portCode': 'LUN', 'name': 'New Shanghai FTZ, Luna', 'image': 'luna.png' },
-  3: { 'portCode': 'VEN', 'name': 'BNARMA Municipal Docks, Venus', 'image': 'venus.png' },
-  4: { 'portCode': 'MRS', 'name': 'UAC Cargo Terminal, Mars', 'image': 'mars.png' },
-  5: { 'portCode': 'CER', 'name': 'Ceres Station', 'image': 'ceres.png' },
-  6: { 'portCode': 'GAN', 'name': 'Jupiter Outpost, Ganymede', 'image': 'jupiter.png' },
-  7: { 'portCode': 'TTN', 'name': 'H. Boone Spaceport, Titan', 'image': 'saturn.png' }
-};
+const locations = [
+  { 'portCode': '---', 'name': 'In Transit', 'image': 'starfield.png' },
+  { 'portCode': 'ETH', 'name': 'Shreveport Space Elevator, Earth', 'image': 'earth.png' },
+  { 'portCode': 'LUN', 'name': 'New Shanghai FTZ, Luna', 'image': 'luna.png' },
+  { 'portCode': 'VEN', 'name': 'BNARMA Municipal Docks, Venus', 'image': 'venus.png' },
+  { 'portCode': 'MRS', 'name': 'UAC Cargo Terminal, Mars', 'image': 'mars.png' },
+  { 'portCode': 'CER', 'name': 'Ceres Station', 'image': 'ceres.png' },
+  { 'portCode': 'GAN', 'name': 'Jupiter Outpost, Ganymede', 'image': 'jupiter.png' },
+  { 'portCode': 'TTN', 'name': 'H. Boone Spaceport, Titan', 'image': 'saturn.png' }
+];
 
 /* Items that can be bought and sold */
-const products = {
-  1: { 'name': 'Consumer Goods', 'origin': 4, 'price': 2000 },
-  2: { 'name': 'Foodstuffs', 'origin': 1, 'price': 3000 },
-  3: { 'name': 'Ore & Minerals', 'origin': 5, 'price': 5000 },
-  4: { 'name': 'Heavy Equipment', 'origin': 7, 'price': 8000 }
-};
+const products = [
+  { 'name': 'Consumer Goods', 'origin': 4, 'price': 2000 },
+  { 'name': 'Foodstuffs', 'origin': 1, 'price': 3000 },
+  { 'name': 'Ore & Minerals', 'origin': 5, 'price': 5000 },
+  { 'name': 'Heavy Equipment', 'origin': 7, 'price': 8000 }
+];
 
 var finances = {
   'cash': 5000,
