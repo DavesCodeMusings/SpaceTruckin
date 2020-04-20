@@ -78,7 +78,7 @@ details input[type="radio"] {
   text-align: center;
 }
 
-#news-summary, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
+#current-date, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
   float: right;
 }
 

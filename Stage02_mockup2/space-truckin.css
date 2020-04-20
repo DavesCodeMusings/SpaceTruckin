@@ -38,7 +38,7 @@ details {
   padding-bottom: 0.5em;
 }
 
-#news-summary, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
+#current-date, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
   float: right;
 }
 

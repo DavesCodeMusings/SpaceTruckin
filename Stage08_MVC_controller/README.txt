@@ -21,10 +21,14 @@ image: find the HTML element using its ID and update one of its properties.
 In the case of the image, it was the image 'src' tag that points to the file
 name for the image. For updating text, we'll use a property called innerHTML
 which is exactly what it sounds like.  It's the text between the starting
-and ending tags (e.g. <p>innerHTML</p>)
+and ending tags (e.g. <span>innerHTML</span>)
+
+Fortunately, we already assigned an ID to the bit of HTML representing the
+current date. We did this to allow CSS styling, making it move to the right.
+But, we can use this same id with JavaScript to change the innerHTML.
 
 We'll also need another model to describe months in a twelve month calendar.
-Perviously we used objects, and arrays of objects, with names to access data.
-This time, since it's a simple numeric sequence, we can use a basic array to
-represent the months in a year. The thing to remember is that arrays start
-at zero while months start at one, so January will be 0 and so on.
+Perviously, we used objects, and arrays of objects, with names to access
+data. In this stage, since it's a simple numeric sequence, we can use a basic
+array to represent the months in a year. The thing to remember is that arrays
+start at zero while months start at one, so January will be 0 and so on.
