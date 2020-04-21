@@ -90,8 +90,9 @@ var todaysDate = {
 /* News headlines */
 const headlines = [
   'Slow day at the news desk.',
+  'There\'s a sale on breakfast burritos!',
   'Landing attempted on Europa. No telemetry since.',
-  'Paul Atreides new Duke of Arrakis in landslide election.',
+  'Paul Atreides named Duke of Arrakis in landslide election.',
   'Jedi Council cancels tour citing artistic differences.',
   'Dr. Hans Zarkov creates revolutionary new rocket.',
   'Panem loses bid to host upcoming Summer Games.',
