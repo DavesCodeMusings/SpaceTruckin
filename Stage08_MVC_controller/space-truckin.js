@@ -9,7 +9,7 @@ function openDetailsOnWideScreens() {
   let mediaQueryList = window.matchMedia('(min-width: 1200px)');
   if (mediaQueryList.matches) {
     let detailsElements = document.getElementsByTagName('details');
-    for (let i = 0; i < detailsElements.length; i++) {
+    for (let i=0; i<detailsElements.length; i++) {
       detailsElements[i].setAttribute('open', true);
     }
   }

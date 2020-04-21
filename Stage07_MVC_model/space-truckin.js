@@ -31,12 +31,12 @@ function preloadImages() {
 
 /* The ship we're piloting */
 var ship = {
-  'name': '',
+  'name': 'SS Botany Bay',
   'cargoCapacity': 50,
   'guns': 0,
   'shieldStrength': 100,
   'location': 1
-}
+};
 
 /* Oh, the places you will go! */
 const locations = [
@@ -62,7 +62,7 @@ var finances = {
   'cash': 5000,
   'bank': 0,
   'debt': 0,
-}
+};
 
 /* Controlling our universe */
 

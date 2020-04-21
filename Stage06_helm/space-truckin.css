@@ -66,6 +66,10 @@ details input[type="radio"] {
   display: none;
 }
 
+.input-group {
+  text-align: center;
+}
+
 .nav-button {
   width: 3em;
 }
@@ -74,11 +78,7 @@ details input[type="radio"] {
   text-align: right;
 }
 
-.input-group {
-  text-align: center;
-}
-
-#current-date, #finance-summary, #cargo-summary, #defense-summary, #helm-summary {
+#news-date, #finance-wallet, #cargo-summary, #defense-summary, #helm-port-code {
   float: right;
 }
 
