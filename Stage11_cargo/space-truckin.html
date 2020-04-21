@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+  <title>Space Truckin'</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="space-truckin.css" rel="stylesheet" type="text/css">
+  <script src="space-truckin.js" type="text/javascript"></script>
+</head>
+
+<body onload="openDetailsOnWideScreens(); preloadImages();">
+  <header>
+  </header>
+
+  <main>
+    <h1 id="title">Space Truckin'</h1>
+    <img id="viewscreen" src="images/earth.png">
+  </main>
+
+  <aside>
+    <h1 id="ship-name">SS Botany Bay</h1>
+    <details>
+      <summary>News: <span id="news-date">Jan 2038</span></summary>
+      <p id='news-headline'>
+        Welcome to Space Truckin', the Solar System trading game.
+      </p>
+    </details>
+
+    <!-- Captain's Finances -->
+
+    <details>
+      <summary>Finances: <span id="finances-wallet">5000</span></summary>
+      <table>
+        <tr>
+          <td>Cash:</td>
+          <td class="numeric" id="finances-cash">5000</td>
+        </tr>
+        <tr>
+          <td>Bank:</td>
+          <td class="numeric" id="finances-bank">1000</td>
+        </tr>
+        <tr>
+          <td>Debt:</td>
+          <td class="numeric" id="finances-debt">(9000)</td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td class="numeric" id="finances-total">(3000)</td>
+        </tr>
+      </table>
+      <p class="input-group" id="finances-atm">
+        <button onclick="useATM('deposit', Number(document.getElementById('finances-atm-amount').value));" type="button">Deposit</button>
+        <input id="finances-atm-amount" placeholder="cash" type="number">
+        <button onclick="useATM('withdrawl', Number(document.getElementById('finances-atm-amount').value));" type="button">Withdrawl</button>
+        <button onclick="useATM('payment', Number(document.getElementById('finances-atm-amount').value));" type="button">Pay Debt</button>
+      </p>
+    </details>
+
+    <!-- Ship's Cargo -->
+
+    <details>
+      <summary>Cargo: <span id="cargo-summary">50/50 TEU</summary>
+      <table>
+        <tr>
+          <td><input name="cargo" type="radio" value="consumer"></td>
+          <td><label for="consumer">Consumer Goods</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">500</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="food"></td>
+          <td><label for="food">Foodstuffs</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">1200</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="ore"></td>
+          <td><label for="ore">Ore & Minerals</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">30,000</td>
+        </tr>
+        <tr>
+          <td><input name="cargo" type="radio" value="heavy"></td>
+          <td><label for="heavy">Heavy Equipment</label></td>
+          <td class="numeric">0</td>
+          <td class="numeric">100,000</td>
+        </tr>
+      </table>
+      <p class="input-group">
+        <button>Buy</button>
+        <input type="number">
+        <button>Sell</button>
+      </p>
+    </details>
+
+    <!-- Ship's Defenses -->
+
+    <details>
+      <summary>Defenses: <span id="defense-summary">FAIR</summary>
+      <table>
+        <tr>
+          <td>Shields:</td>
+          <td class="numeric">100%</td>
+        </tr>
+        <tr>
+          <td>Railguns:</td>
+          <td class="numeric">0</td>
+        </tr>
+      </table>
+    </details>
+
+    <!-- Navigation -->
+
+    <details>
+      <summary>Helm: <span id="helm-port-code">ETH</span></summary>
+      <p id="helm-location-name">Shreveport Space Elevator, Earth</p>
+      <p>Set new course, Captain?</p>
+      <p class="input-group">
+        <button class="nav-button" onclick="updateLocation(1);" title="Earth">ETH</button>
+        <button class="nav-button" onclick="updateLocation(2);" title="Luna">LUN</button>
+        <button class="nav-button" onclick="updateLocation(3);" title="Venus">VEN</button>
+        <button class="nav-button" onclick="updateLocation(4);" title="Mars">MRS</button>
+        <button class="nav-button" onclick="updateLocation(5);" title="Ceres">CER</button>
+        <button class="nav-button" onclick="updateLocation(6);" title="Ganymede">GAN</button>
+        <button class="nav-button" onclick="updateLocation(7);" title="Titan">TTN</button>
+      </p>
+    </details>
+  </aside>
+
+  <footer></footer>
+
+</body>
+
+</html>
