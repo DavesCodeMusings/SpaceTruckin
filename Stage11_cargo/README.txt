@@ -69,6 +69,6 @@ and minerals. Heavy equipment would come in at 2100.
 Remember these are median prices. We'll need to do the divide by four and
 multiply by the die roll to get an actual price in a particular port.
 
-Once a function for pricing is coded, the remaining part of this stage will
-be to create a way for the player to buy and sell cargo items. This will be
-similar to the way the player can deposit and withdraw funds from the bank.
+We still need to have a way for the player to buy and sell cargo, but
+setting prices is complex work and probably all we want to take on for
+this stage. We'll save buying and selling for next time.

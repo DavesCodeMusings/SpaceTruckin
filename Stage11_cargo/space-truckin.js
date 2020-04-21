@@ -38,6 +38,9 @@ function rollDie(sides) {
   return Math.floor(Math.random() * max);
 }
 
+/* Magnify effects of die roll with our old pal Fibonacci. */
+const fibonacciBell = [1, 1, 2, 3, 5, 8, 13, 8, 5, 3, 2, 1, 1];
+
 /* Modeling our universe */
 
 /* The ship we're piloting */
@@ -63,11 +66,13 @@ const locations = [
 
 /* Items that can be bought and sold */
 const products = [
-  { 'name': 'Consumer Goods', 'origin': 4, 'price': 2000 },
-  { 'name': 'Foodstuffs', 'origin': 1, 'price': 3000 },
-  { 'name': 'Ore & Minerals', 'origin': 5, 'price': 5000 },
-  { 'name': 'Heavy Equipment', 'origin': 7, 'price': 8000 }
+  { 'name': 'Consumer Goods', 'origin': 4, 'medianPrice': 500 },
+  { 'name': 'Foodstuffs', 'origin': 1, 'medianPrice': 800 },
+  { 'name': 'Ore & Minerals', 'origin': 5, 'medianPrice': 1300 },
+  { 'name': 'Heavy Equipment', 'origin': 7, 'medianPrice': 2100 }
 ];
+
+var productPrices = [];
 
 var finances = {
   'cash': 5000,
@@ -208,6 +213,29 @@ function useATM(transaction, amount) {
   updateFinances();
 }
 
+function updateCargo() {
+  let cargoConsumerPrice = document.getElementById('cargo-consumer-price');
+  let cargoFoodPrice = document.getElementById('cargo-food-price');
+  let cargoOrePrice = document.getElementById('cargo-ore-price');
+  let cargoHeavyPrice = document.getElementById('cargo-heavy-price');
+  cargoConsumerPrice.innerHTML = productPrices[0];
+  cargoFoodPrice.innerHTML = productPrices[1];
+  cargoOrePrice.innerHTML = productPrices[2];
+  cargoHeavyPrice.innerHTML = productPrices[3];
+}
+
+/* Calculate a price for each of the products players can buy. */
+function calculateCargoPrices() {
+  let numberOfProducts = products.length;
+  for(i=0; i<numberOfProducts; i++) {
+    let dieNumber = rollDie(6);
+    let fibNumber = fibonacciBell[dieNumber];
+    let basePrice = products[i].medianPrice / 4;
+    productPrices[i] = basePrice * fibNumber;
+  }
+  updateCargo();
+}
+
 function updateLocation(newLocation) {
   if (newLocation != ship.location) {
     let helmPortCode = document.getElementById('helm-port-code');
@@ -224,6 +252,7 @@ function updateLocation(newLocation) {
       ship.location = newLocation;
       updateNews();
       applyInterest();
+      calculateCargoPrices();
       setImage(locations[newLocation].image);
       helmPortCode.innerHTML = locations[newLocation].portCode;
       helmLocationName.innerHTML = locations[newLocation].name;
