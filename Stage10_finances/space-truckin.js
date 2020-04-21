@@ -166,7 +166,7 @@ function updateFinances() {
     financesTotal.innerHTML = '(' + Math.abs(Math.round(total)) + ')';
   }
 
-  // Make ATM accessible only on Earth.
+  // Make ATM transactions available only on Earth.
   if (ship.location == 1) {
     financesATM.style.display = 'block';
   }
