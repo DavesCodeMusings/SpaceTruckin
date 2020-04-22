@@ -73,7 +73,12 @@ const products = [
   { 'name': 'Heavy Equipment', 'medianPrice': 2100 }
 ];
 
-var productPrices = [500, 800, 1300, 2100];
+var currentProductPrices = [
+  products[0].medianPrice,
+  products[1].medianPrice,
+  products[2].medianPrice,
+  products[3].medianPrice
+];
 
 var finances = {
   'cash': 10,
@@ -181,6 +186,11 @@ function updateFinances() {
   else {
     financesATM.style.display = 'none';
   }
+
+  // Check to see if player has reached one-million in the bank to win the game.
+  if (finances.bank >= 1000000) {
+    alert("Congratulations! You're a millionaire.");
+  }
 }
 
 function applyInterest()
@@ -214,7 +224,8 @@ function useATM(transaction, amount) {
   }
   updateFinances();
 }
-function selectItem(name, value) {
+
+function updateSelectedItem(name, value) {
   let choices = document.getElementsByName(name);
   for (let i=0; i<choices.length; i++) {
     if (choices[i].value == value) {
@@ -235,10 +246,10 @@ function updateCargo() {
   let cargoFoodPrice = document.getElementById('cargo-food-price');
   let cargoOrePrice = document.getElementById('cargo-ore-price');
   let cargoHeavyPrice = document.getElementById('cargo-heavy-price');
-  cargoConsumerPrice.innerHTML = productPrices[0];
-  cargoFoodPrice.innerHTML = productPrices[1];
-  cargoOrePrice.innerHTML = productPrices[2];
-  cargoHeavyPrice.innerHTML = productPrices[3];
+  cargoConsumerPrice.innerHTML = currentProductPrices[0];
+  cargoFoodPrice.innerHTML = currentProductPrices[1];
+  cargoOrePrice.innerHTML = currentProductPrices[2];
+  cargoHeavyPrice.innerHTML = currentProductPrices[3];
 
   // Update quantities for items in the cargo hold.
   let cargoConsumerQuantity = document.getElementById('cargo-consumer-quantity');
@@ -262,21 +273,34 @@ function updateCargo() {
 /* Buy Cargo */
 function buyCargo(itemSelectorName, amount) {
   let cargoItems = document.getElementsByName(itemSelectorName);
-  let cargo = '';
+  let cargoItemToBuy = '';
 
-  // Find out which cargo item is selected by looking for a 'checked' radio button.
-  for (let i=0; i<cargoItems.length; i++) {
-    if (cargoItems[i].checked) {
-      cargo = i;
+  // Add up how much cargo is currently in the hold.
+  let cargoSpaceAvailable = ship.cargoCapacity;
+  for (let i=0; i<ship.cargoHold.length; i++) {
+    cargoSpaceAvailable -= ship.cargoHold[i];
+  }
+
+  // See if there's room for for the amount of cargo the player wants to buy.
+  if (cargoSpaceAvailable >= amount) {
+
+    // Find out which cargo item is selected by looking for a 'checked' radio button.
+    for (let i=0; i<cargoItems.length; i++) {
+      if (cargoItems[i].checked) {
+        cargoItemToBuy = i;
+      }
+    }
+    let totalCost = currentProductPrices[cargoItemToBuy] * amount;
+    if (totalCost <= finances.cash) {
+      ship.cargoHold[cargoItemToBuy] += amount;
+      finances.cash -= totalCost;
+    }
+    else {
+      alert('Insufficient funds.');
     }
   }
-  let totalCost = productPrices[cargo] * amount;
-  if (totalCost <= finances.cash) {
-    ship.cargoHold[cargo] += amount;
-    finances.cash -= totalCost;
-  }
   else {
-    alert('Insufficient Funds.');
+    alert('Not enough room for that much cargo.');
   }
   updateCargo();
   updateFinances();
@@ -285,7 +309,7 @@ function buyCargo(itemSelectorName, amount) {
 /* Sell Cargo */
 function sellCargo(itemSelectorName, amount) {
   let cargoItems = document.getElementsByName(itemSelectorName);
-  let cargoItemToSell = -1;
+  let cargoItemToSell = 0;
 
   // Find out which cargo item is selected by looking for a 'checked' radio button.
   for (let i=0; i<cargoItems.length; i++) {
@@ -295,18 +319,13 @@ function sellCargo(itemSelectorName, amount) {
   }
 
   // Make the transaction.
-  if (cargoItemToSell >= 0) {
-    if (amount <= ship.cargoHold[cargoItemToSell]) {
-      let totalSale = productPrices[cargoItemToSell] * amount;
-      ship.cargoHold[cargoItemToSell] -= amount;
-      finances.cash += totalSale;
-    }
-    else {
-      alert('Not enough cargo.');
-    }
+  if (amount <= ship.cargoHold[cargoItemToSell]) {
+    let totalSale = currentProductPrices[cargoItemToSell] * amount;
+    ship.cargoHold[cargoItemToSell] -= amount;
+    finances.cash += totalSale;
   }
   else {
-    alert('No cargo selected.');
+    alert(`No can do there, Cap'n.\nThere aren't ${amount} ${products[cargoItemToSell].name} in the cargo hold.`);
   }
 
   // Update information on screen.
@@ -321,7 +340,7 @@ function calculateCargoPrices() {
     let dieNumber = rollDie(6);
     let fibNumber = fibonacciBell[dieNumber];
     let basePrice = products[i].medianPrice / 2;
-    productPrices[i] = basePrice * fibNumber;
+    currentProductPrices[i] = basePrice * fibNumber;
   }
   updateCargo();
 }

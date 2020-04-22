@@ -63,29 +63,29 @@
     <details>
       <summary>Cargo: <span id="cargo-summary">30/50 TEU</span></summary>
       <table>
-        <tr onclick="selectItem('cargo', 0);">
-          <td class="item-selector"><input name="cargo" type="radio" value="0"></td>
+        <tr class="highlight" onclick="updateSelectedItem('cargo', 0);">
+          <td class="item-selector"><input name="cargo" type="radio" value="0" checked></td>
           <td><label for="0"><script>document.write(products[0].name);</script></label></td>
           <td class="numeric" id='cargo-consumer-quantity'><script>document.write(ship.cargoHold[0]);</script></td>
-          <td class="numeric" id='cargo-consumer-price'><script>document.write(productPrices[0]);</script></td>
+          <td class="numeric" id='cargo-consumer-price'><script>document.write(currentProductPrices[0]);</script></td>
         </tr>
-        <tr onclick="selectItem('cargo', 1);">
+        <tr onclick="updateSelectedItem('cargo', 1);">
           <td class="item-selector"><input name="cargo" type="radio" value="1"></td>
           <td><label for="1"><script>document.write(products[1].name);</script></label></td>
           <td class="numeric" id='cargo-food-quantity'><script>document.write(ship.cargoHold[1]);</script></td>
-          <td class="numeric" id='cargo-food-price'><script>document.write(productPrices[1]);</script></td>
+          <td class="numeric" id='cargo-food-price'><script>document.write(currentProductPrices[1]);</script></td>
         </tr>
-        <tr onclick="selectItem('cargo', 2);">
+        <tr onclick="updateSelectedItem('cargo', 2);">
           <td class="item-selector"><input name="cargo" type="radio" value="2"></td>
           <td><label for="2"><script>document.write(products[2].name);</script></label></td>
           <td class="numeric" id='cargo-ore-quantity'><script>document.write(ship.cargoHold[2]);</script></td>
-          <td class="numeric" id='cargo-ore-price'><script>document.write(productPrices[2]);</script></td>
+          <td class="numeric" id='cargo-ore-price'><script>document.write(currentProductPrices[2]);</script></td>
         </tr>
-        <tr onclick="selectItem('cargo', 3);">
+        <tr onclick="updateSelectedItem('cargo', 3);">
           <td class="item-selector"><input name="cargo" type="radio" value="3"></td>
           <td><label for="3"><script>document.write(products[3].name);</script></label></td>
           <td class="numeric" id='cargo-heavy-quantity'><script>document.write(ship.cargoHold[3]);</script></td>
-          <td class="numeric" id='cargo-heavy-price'><script>document.write(productPrices[3]);</script></td>
+          <td class="numeric" id='cargo-heavy-price'><script>document.write(currentProductPrices[3]);</script></td>
         </tr>
       </table>
       <p class="input-group">
