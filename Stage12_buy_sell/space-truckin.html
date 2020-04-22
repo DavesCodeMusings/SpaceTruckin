@@ -31,23 +31,23 @@
     <!-- Captain's Finances -->
 
     <details>
-      <summary>Finances: <span id="finances-wallet">5000</span></summary>
+      <summary>Finances: <span id="finances-wallet"><script>document.write(finances.cash);</script></span></summary>
       <table>
         <tr>
           <td>Cash:</td>
-          <td class="numeric" id="finances-cash">5000</td>
+          <td class="numeric" id="finances-cash"><script>document.write(finances.cash);</script></td>
         </tr>
         <tr>
           <td>Bank:</td>
-          <td class="numeric" id="finances-bank">1000</td>
+          <td class="numeric" id="finances-bank"><script>document.write(finances.bank);</script></td>
         </tr>
         <tr>
           <td>Debt:</td>
-          <td class="numeric" id="finances-debt">(9000)</td>
+          <td class="numeric" id="finances-debt"><script>document.write(finances.debt);</script></td>
         </tr>
         <tr>
           <td>Total:</td>
-          <td class="numeric" id="finances-total">(3000)</td>
+          <td class="numeric" id="finances-total"><script>document.write(finances.cash + finances.bank - finances.debt);</script></td>
         </tr>
       </table>
       <p class="input-group" id="finances-atm">
@@ -61,44 +61,44 @@
     <!-- Ship's Cargo -->
 
     <details>
-      <summary>Cargo: <span id="cargo-summary">50/50 TEU</summary>
+      <summary>Cargo: <span id="cargo-summary">30/50 TEU</span></summary>
       <table>
-        <tr>
-          <td><input name="cargo" type="radio" value="consumer"></td>
-          <td><label for="consumer">Consumer Goods</label></td>
-          <td class="numeric" id='cargo-consumer-quantity'>0</td>
-          <td class="numeric" id='cargo-consumer-price'>500</td>
+        <tr onclick="selectItem('cargo', 0);">
+          <td class="item-selector"><input name="cargo" type="radio" value="0"></td>
+          <td><label for="0"><script>document.write(products[0].name);</script></label></td>
+          <td class="numeric" id='cargo-consumer-quantity'><script>document.write(ship.cargoHold[0]);</script></td>
+          <td class="numeric" id='cargo-consumer-price'><script>document.write(productPrices[0]);</script></td>
         </tr>
-        <tr>
-          <td><input name="cargo" type="radio" value="food"></td>
-          <td><label for="food">Foodstuffs</label></td>
-          <td class="numeric" id='cargo-food-quantity'>0</td>
-          <td class="numeric" id='cargo-food-price'>800</td>
+        <tr onclick="selectItem('cargo', 1);">
+          <td class="item-selector"><input name="cargo" type="radio" value="1"></td>
+          <td><label for="1"><script>document.write(products[1].name);</script></label></td>
+          <td class="numeric" id='cargo-food-quantity'><script>document.write(ship.cargoHold[1]);</script></td>
+          <td class="numeric" id='cargo-food-price'><script>document.write(productPrices[1]);</script></td>
         </tr>
-        <tr>
-          <td><input name="cargo" type="radio" value="ore"></td>
-          <td><label for="ore">Ore & Minerals</label></td>
-          <td class="numeric" id='cargo-ore-quantity'>0</td>
-          <td class="numeric" id='cargo-ore-price'>1300</td>
+        <tr onclick="selectItem('cargo', 2);">
+          <td class="item-selector"><input name="cargo" type="radio" value="2"></td>
+          <td><label for="2"><script>document.write(products[2].name);</script></label></td>
+          <td class="numeric" id='cargo-ore-quantity'><script>document.write(ship.cargoHold[2]);</script></td>
+          <td class="numeric" id='cargo-ore-price'><script>document.write(productPrices[2]);</script></td>
         </tr>
-        <tr>
-          <td><input name="cargo" type="radio" value="heavy"></td>
-          <td><label for="heavy">Heavy Equipment</label></td>
-          <td class="numeric" id='cargo-heavy-quantity'>0</td>
-          <td class="numeric" id='cargo-heavy-price'>2100</td>
+        <tr onclick="selectItem('cargo', 3);">
+          <td class="item-selector"><input name="cargo" type="radio" value="3"></td>
+          <td><label for="3"><script>document.write(products[3].name);</script></label></td>
+          <td class="numeric" id='cargo-heavy-quantity'><script>document.write(ship.cargoHold[3]);</script></td>
+          <td class="numeric" id='cargo-heavy-price'><script>document.write(productPrices[3]);</script></td>
         </tr>
       </table>
       <p class="input-group">
-        <button>Buy</button>
-        <input type="number">
-        <button>Sell</button>
+        <button onclick="buyCargo('cargo', Number(document.getElementById('cargo-quantity').value));" type="button">Buy</button>
+        <input id="cargo-quantity" type="number" min=0 max=50 placeholder="TEUs">
+        <button onclick="sellCargo('cargo', Number(document.getElementById('cargo-quantity').value));" type="button">Sell</button>
       </p>
     </details>
 
     <!-- Ship's Defenses -->
 
     <details>
-      <summary>Defenses: <span id="defense-summary">FAIR</summary>
+      <summary>Defenses: <span id="defense-summary">FAIR</span></summary>
       <table>
         <tr>
           <td>Shields:</td>

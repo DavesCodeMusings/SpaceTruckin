@@ -52,6 +52,7 @@ details p {
 details table {
   margin-left: 1em;
   padding-right: 1em;
+  table-layout: fixed;
   width: 100%;
 }
 
@@ -62,12 +63,17 @@ details input[type="number"] {
   width: 6em;
 }
 
-details input[type="radio"] {
-  display: none;
+.highlight {
+  background: lightgreen;
+  color: black;
 }
 
 .input-group {
   text-align: center;
+}
+
+.item-selector {
+  display: none;
 }
 
 .nav-button {

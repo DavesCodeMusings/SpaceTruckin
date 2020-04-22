@@ -47,6 +47,7 @@ const fibonacciBell = [1, 1, 2, 3, 5, 8, 13, 8, 5, 3, 2, 1, 1];
 var ship = {
   'name': 'SS Botany Bay',
   'cargoCapacity': 50,
+  'cargoHold' : [20, 0, 0, 0],
   'guns': 0,
   'shieldStrength': 100,
   'location': 1
@@ -66,18 +67,18 @@ const locations = [
 
 /* Items that can be bought and sold */
 const products = [
-  { 'name': 'Consumer Goods', 'origin': 4, 'medianPrice': 500 },
-  { 'name': 'Foodstuffs', 'origin': 1, 'medianPrice': 800 },
-  { 'name': 'Ore & Minerals', 'origin': 5, 'medianPrice': 1300 },
-  { 'name': 'Heavy Equipment', 'origin': 7, 'medianPrice': 2100 }
+  { 'name': 'Consumer Goods', 'medianPrice': 500 },
+  { 'name': 'Foodstuffs', 'medianPrice': 800 },
+  { 'name': 'Ore & Minerals', 'medianPrice': 1300 },
+  { 'name': 'Heavy Equipment', 'medianPrice': 2100 }
 ];
 
-var productPrices = [];
+var productPrices = [500, 800, 1300, 2100];
 
 var finances = {
-  'cash': 5000,
-  'bank': 1000,
-  'debt': 9000
+  'cash': 10,
+  'bank': 0,
+  'debt': 100000
 };
 
 const financeRates = {
@@ -120,7 +121,8 @@ const headlines = [
   'Universe credits paleo diet as reason for slowing expansion.',
   'Apophis returns, rather miffed at how things run in absense.',
   'Kessel Run speed record shattered.',
-  'Doctors Voight and Kampff ask internet to help name new test.'
+  'Doctors Voight and Kampff ask internet to help name new test.',
+  'World leaders cautiously optimistic as Karen speaks to manager.'
 ];
 
 
@@ -212,8 +214,23 @@ function useATM(transaction, amount) {
   }
   updateFinances();
 }
+function selectItem(name, value) {
+  let choices = document.getElementsByName(name);
+  for (let i=0; i<choices.length; i++) {
+    if (choices[i].value == value) {
+      choices[i].checked = true;
+      choices[i].parentElement.parentElement.classList.add('highlight');
+    }
+    else {
+      choices[i].checked = false;
+      choices[i].parentElement.parentElement.classList.remove('highlight');
+    }
+  }
+}
 
 function updateCargo() {
+
+  // Update prices on items in the cargo hold. 
   let cargoConsumerPrice = document.getElementById('cargo-consumer-price');
   let cargoFoodPrice = document.getElementById('cargo-food-price');
   let cargoOrePrice = document.getElementById('cargo-ore-price');
@@ -222,6 +239,79 @@ function updateCargo() {
   cargoFoodPrice.innerHTML = productPrices[1];
   cargoOrePrice.innerHTML = productPrices[2];
   cargoHeavyPrice.innerHTML = productPrices[3];
+
+  // Update quantities for items in the cargo hold.
+  let cargoConsumerQuantity = document.getElementById('cargo-consumer-quantity');
+  let cargoFoodQuantity = document.getElementById('cargo-food-quantity');
+  let cargoOreQuantity = document.getElementById('cargo-ore-quantity');
+  let cargoHeavyQuantity = document.getElementById('cargo-heavy-quantity');
+  cargoConsumerQuantity.innerHTML = ship.cargoHold[0];
+  cargoFoodQuantity.innerHTML = ship.cargoHold[1];
+  cargoOreQuantity.innerHTML = ship.cargoHold[2];
+  cargoHeavyQuantity.innerHTML = ship.cargoHold[3];
+
+  // Update total cargo capacity for the ship.
+  let cargoSummary = document.getElementById('cargo-summary');
+  let cargoTotal = 0;
+  for (let i=0; i<ship.cargoHold.length; i++) {
+    cargoTotal += ship.cargoHold[i];
+  }
+  cargoSummary.innerHTML = `${cargoTotal}/${ship.cargoCapacity} TEU`;
+}
+
+/* Buy Cargo */
+function buyCargo(itemSelectorName, amount) {
+  let cargoItems = document.getElementsByName(itemSelectorName);
+  let cargo = '';
+
+  // Find out which cargo item is selected by looking for a 'checked' radio button.
+  for (let i=0; i<cargoItems.length; i++) {
+    if (cargoItems[i].checked) {
+      cargo = i;
+    }
+  }
+  let totalCost = productPrices[cargo] * amount;
+  if (totalCost <= finances.cash) {
+    ship.cargoHold[cargo] += amount;
+    finances.cash -= totalCost;
+  }
+  else {
+    alert('Insufficient Funds.');
+  }
+  updateCargo();
+  updateFinances();
+}
+
+/* Sell Cargo */
+function sellCargo(itemSelectorName, amount) {
+  let cargoItems = document.getElementsByName(itemSelectorName);
+  let cargoItemToSell = -1;
+
+  // Find out which cargo item is selected by looking for a 'checked' radio button.
+  for (let i=0; i<cargoItems.length; i++) {
+    if (cargoItems[i].checked) {
+      cargoItemToSell = i;
+    }
+  }
+
+  // Make the transaction.
+  if (cargoItemToSell >= 0) {
+    if (amount <= ship.cargoHold[cargoItemToSell]) {
+      let totalSale = productPrices[cargoItemToSell] * amount;
+      ship.cargoHold[cargoItemToSell] -= amount;
+      finances.cash += totalSale;
+    }
+    else {
+      alert('Not enough cargo.');
+    }
+  }
+  else {
+    alert('No cargo selected.');
+  }
+
+  // Update information on screen.
+  updateCargo();
+  updateFinances();
 }
 
 /* Calculate a price for each of the products players can buy. */
@@ -230,7 +320,7 @@ function calculateCargoPrices() {
   for(i=0; i<numberOfProducts; i++) {
     let dieNumber = rollDie(6);
     let fibNumber = fibonacciBell[dieNumber];
-    let basePrice = products[i].medianPrice / 4;
+    let basePrice = products[i].medianPrice / 2;
     productPrices[i] = basePrice * fibNumber;
   }
   updateCargo();
