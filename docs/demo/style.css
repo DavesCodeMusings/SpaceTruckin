@@ -12,6 +12,7 @@ html {
 body {
   background: antiquewhite;
   color: black;
+  box-shadow: 0 0 1em black;
   margin-left: auto;
   margin-right: auto;
   padding: 3%;
