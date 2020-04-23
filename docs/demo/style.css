@@ -1,4 +1,12 @@
 /*
+  SIL Open Font licensed font from https://fontlibrary.org/en/font/single-day-regular
+*/
+@font-face {
+  font-family: "handwriting";
+  src: url("single_day_regular.ttf");
+}
+
+/*
   Make sure width and height measurements include padding and borders.
 */
 * {
@@ -35,4 +43,9 @@ img {
   width: 350px;
   margin-left: auto;
   margin-right: auto;
+}
+
+main {
+  font-family: handwriting;
+  font-size: larger;
 }
