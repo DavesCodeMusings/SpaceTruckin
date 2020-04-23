@@ -11,7 +11,7 @@ header, footer {
     color: lightgreen;
 }
 a {
-    color: green;
+    color: limegreen;
 }
 h2, h3, h4, h5 {  /* h1 color is inherited from header, footer */
     color: black;
