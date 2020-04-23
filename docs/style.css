@@ -1,0 +1,135 @@
+/* A three-column design for big screens that stacks on small screens. */
+
+/* Set the overall color and font preferences here. */
+body, header, footer {
+    background: whitesmoke;
+    color: dimgray;
+    font-family: sans-serif;
+}
+header, footer {
+    background: black;
+    color: lightgreen;
+}
+a {
+    color: green;
+}
+h2, h3, h4, h5 {  /* h1 color is inherited from header, footer */
+    color: black;
+}
+
+/*
+    No changes should be needed from here on down. 
+*/
+
+/* Same sizing rules for all browsers */
+* {
+    box-sizing: border-box;
+}
+
+/*
+    Start with styling for mobile.
+*/
+
+/* Center the page. */
+body {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Have the underlines only show up when the mouse is over them. */
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* Keep content away from the very edges of the screen. */
+header, nav, main, aside, footer {
+    padding: 0.25em;
+}
+
+/* Clear right and left to keep margins from creeping in. A narrow neutral-
+   colored line separates the bottom of the header from the body.*/
+header {
+    border-bottom: 1px solid dimgray;
+    clear: both;
+    text-align: center;
+}
+
+/* Remove bullets from lists in the margins to save space. */
+nav ul, aside ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+/* Spread out margin lists a little more (assuming they are lists of links)
+   making them easier to tap with a touch screen. */
+nav li, aside li {
+    padding-bottom: 1em;
+}
+
+/* Separate from body with a thin line.  Shrink font for less prominence. */
+footer {
+    border-top: 1px solid dimgray;
+    clear: both;
+    font-size: smaller;
+    text-align: center;
+}
+
+/*
+    Apply tweaks for larger screens (tablets, laptops, desktop.)
+*/
+@media screen and (min-width: 768px) {
+
+    /* Dark color for anything outside body helps make the page stand out. */
+    html {
+        background: dimgray;
+    }
+
+    /* Give the page a slightly rounded look with a little shadow. Constrain
+       width on screens wider than 1280 (720p), otherwise a maximized browser
+       on a big 4k screen is going to spread out like melted butter. */
+    body {
+        border-radius: 1em;
+        box-shadow: 0 0 1em black;
+        max-width: 1280px;
+    }
+
+    /* Mimic the rounding of the body, but just on the top.  More padding
+       makes header larger, giving it prominence. */
+    header {
+        border-radius: 1em 1em 0 0;
+        padding: 2em;
+    }
+
+    /* Make the title of the page bigger on large screen devices. */
+    header h1 {
+        font-size: 300%;
+    }
+
+    /* Nav and aside get a narrow slice of screen and float into position
+       as margins areas alongside the main content. Padding all around pushes
+       their content away from edges and slightly lower than main. */
+    nav, aside {
+        float: left;
+        padding: 1em;
+        width: 20%;
+    }
+    
+    /* Main gets the most screen area.  Padding on left and right keeps
+       content from bumping into margins, but no padding on top makes it
+       slightly higher than the margins, giving it more visual prominence. */
+    main {
+        float: left;
+        padding-left: 1em;
+        padding-right: 1em;
+        width: 60%;
+    }
+
+    /* Mimic the rounding of the body, but just on the bottom. */
+    footer {
+        border-radius: 0 0 1em 1em;
+        padding: 1em;
+    }
+}

@@ -147,15 +147,25 @@ function updateNews() {
   }
   let currentDate = document.getElementById('news-date');
   currentDate.innerHTML = months[todaysDate.month] + ' ' + todaysDate.year;
-
-  // Choose a random headline... or not. (1 in 6 chance.)
   let newsHeadline = document.getElementById('news-headline');
+  let todaysHeadline = headlines[0];  // 'Slow news day.'
+
+  // Check for bargains (anything below median price) and report first one found.
+  for(let i=0; i<products.length; i++) {
+    if (currentProductPrices[i] < products[i].medianPrice) {
+      todaysHeadline = `There's a sale on ${products[i].name}.`;
+      break;
+    }
+  }
+
+  // Roll the dice to see if there's a random headline to display, replacing
+  // the bargain report headline (a one in six chance.)
   if (rollDie(6) == 1) {
-    newsHeadline.innerHTML = headlines[rollDie(headlines.length)];
+    todaysHeadline = headlines[rollDie(headlines.length)];
   }
-  else {
-    newsHeadline.innerHTML = headlines[0];
-  }
+
+  // Display it.
+  newsHeadline.innerHTML = todaysHeadline;
 }
 
 function updateFinances() {
@@ -202,41 +212,46 @@ function applyInterest()
 }
 
 function useATM(transaction, amount) {
-  switch (transaction) {
-    case 'deposit':
-      if (finances.cash >= amount) {
-        finances.cash -= amount;
-        finances.bank += amount;
-      }
-      else {
-        alert(`Don't have that much cash, Cap'n.`);
-      }
-      break;
-    case 'withdrawl':
-      if (finances.bank >= amount) {
-        finances.bank -= amount;
-        finances.cash += amount;
-      }
-      else {
-        alert(`Not enough in the bank.`);
-      }
-      break;
-    case 'payment':
-      if (finances.debt >= amount) {
+  if (amount) {
+    switch (transaction) {
+      case 'deposit':
         if (finances.cash >= amount) {
           finances.cash -= amount;
-          finances.debt -= amount;
+          finances.bank += amount;
         }
         else {
-          alert(`Not enough cash for that, Cap'n.`);
+          alert(`Don't have that much cash, Cap'n.`);
         }
+        break;
+      case 'withdrawl':
+        if (finances.bank >= amount) {
+          finances.bank -= amount;
+          finances.cash += amount;
+        }
+        else {
+          alert(`Not enough in the bank.`);
+        }
+        break;
+      case 'payment':
+        if (finances.debt >= amount) {
+          if (finances.cash >= amount) {
+            finances.cash -= amount;
+            finances.debt -= amount;
+          }
+          else {
+            alert(`Not enough cash for that, Cap'n.`);
+          }
+        }
+        else {
+          alert(`That's more than we owe, Cap'n`);
+        }
+        break;
       }
-      else {
-        alert(`That's more than we owe, Cap'n`);
-      }
-      break;
+      updateFinances();
   }
-  updateFinances();
+  else {
+    alert(`How much, or should I guess?`);
+  }
 }
 
 function updateSelectedItem(name, value) {
@@ -287,37 +302,44 @@ function updateCargo() {
 /* Buy Cargo */
 function buyCargo(itemSelectorName, amount) {
   let cargoItems = document.getElementsByName(itemSelectorName);
-  let cargoItemToBuy = '';
+  let cargoItemToBuy = 0;
 
-  // Add up how much cargo is currently in the hold.
-  let cargoSpaceAvailable = ship.cargoCapacity;
-  for (let i=0; i<ship.cargoHold.length; i++) {
-    cargoSpaceAvailable -= ship.cargoHold[i];
+  // Find out which cargo item is selected by looking for a 'checked' radio button.
+  for (let i=0; i<cargoItems.length; i++) {
+    if (cargoItems[i].checked) {
+      cargoItemToBuy = i;
+    }
   }
 
-  // See if there's room for for the amount of cargo the player wants to buy.
-  if (cargoSpaceAvailable >= amount) {
+  // This only works if the player filled in the amount.
+  if (amount) {
 
-    // Find out which cargo item is selected by looking for a 'checked' radio button.
-    for (let i=0; i<cargoItems.length; i++) {
-      if (cargoItems[i].checked) {
-        cargoItemToBuy = i;
+    // Add up how much cargo is currently in the hold.
+    let cargoSpaceAvailable = ship.cargoCapacity;
+    for (let i=0; i<ship.cargoHold.length; i++) {
+      cargoSpaceAvailable -= ship.cargoHold[i];
+    }
+
+    // See if there's room for for the amount of cargo the player wants to buy.
+    if (cargoSpaceAvailable >= amount) {
+      let totalCost = currentProductPrices[cargoItemToBuy] * amount;
+      if (totalCost <= finances.cash) {
+        ship.cargoHold[cargoItemToBuy] += amount;
+        finances.cash -= totalCost;
+      }
+      else {
+        alert(`Sorry, Cap'n. ${finances.cash} just isn't enough to cover it.`);
       }
     }
-    let totalCost = currentProductPrices[cargoItemToBuy] * amount;
-    if (totalCost <= finances.cash) {
-      ship.cargoHold[cargoItemToBuy] += amount;
-      finances.cash -= totalCost;
-    }
     else {
-      alert(`Sorry, Cap'n. ${finances.cash} just isn't enough to cover it.`);
+      alert('Not enough room for that much cargo.');
     }
+    updateCargo();
+    updateFinances();
   }
   else {
-    alert('Not enough room for that much cargo.');
+    alert(`Hey, Cap'n, I'm not a mind reader here.\nHow many units of ${products[cargoItemToBuy].name} did you want?`);
   }
-  updateCargo();
-  updateFinances();
 }
 
 /* Sell Cargo */
@@ -332,16 +354,22 @@ function sellCargo(itemSelectorName, amount) {
     }
   }
 
-  // Make the transaction.
-  if (amount <= ship.cargoHold[cargoItemToSell]) {
-    let totalSale = currentProductPrices[cargoItemToSell] * amount;
-    ship.cargoHold[cargoItemToSell] -= amount;
-    finances.cash += totalSale;
+  // Just like buying, it only works if there's an amount given.
+  if (amount) {
+
+    // Make the transaction.
+    if (amount <= ship.cargoHold[cargoItemToSell]) {
+      let totalSale = currentProductPrices[cargoItemToSell] * amount;
+      ship.cargoHold[cargoItemToSell] -= amount;
+      finances.cash += totalSale;
+    }
+    else {
+      alert(`No can do there, Cap'n.\nThere aren't ${amount} ${products[cargoItemToSell].name} in the cargo hold.`);
+    }
   }
   else {
-    alert(`No can do there, Cap'n.\nThere aren't ${amount} ${products[cargoItemToSell].name} in the cargo hold.`);
+    alert(`Hey Cap'n, you want to tell me how much ${products[cargoItemToSell].name} we're selling, or you want I should guess?`);
   }
-
   // Update information on screen.
   updateCargo();
   updateFinances();
@@ -373,9 +401,9 @@ function updateLocation(newLocation) {
     // After a 'flight time' delay, update with new picture and info.
     setTimeout(function () {
       ship.location = newLocation;
-      updateNews();
       applyInterest();
       calculateCargoPrices();
+      updateNews();
       setImage(locations[newLocation].image);
       helmPortCode.innerHTML = locations[newLocation].portCode;
       helmLocationName.innerHTML = locations[newLocation].name;
