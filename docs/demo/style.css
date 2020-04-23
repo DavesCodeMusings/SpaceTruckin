@@ -1,0 +1,37 @@
+/*
+  Make sure width and height measurements include padding and borders.
+*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: dimgray;
+}
+
+body {
+  background: antiquewhite;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3%;
+  max-width: 640px;
+}
+
+header, footer {
+  text-align: center;
+}
+
+aside {
+  text-align: center;
+}
+
+img {
+  border: 1px solid black;
+  border-radius: 20px;
+  display: block;
+  height: auto;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
