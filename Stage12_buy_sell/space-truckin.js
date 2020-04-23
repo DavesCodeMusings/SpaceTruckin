@@ -208,17 +208,31 @@ function useATM(transaction, amount) {
         finances.cash -= amount;
         finances.bank += amount;
       }
+      else {
+        alert(`Don't have that much cash, Cap'n.`);
+      }
       break;
     case 'withdrawl':
       if (finances.bank >= amount) {
         finances.bank -= amount;
         finances.cash += amount;
       }
+      else {
+        alert(`Not enough in the bank.`);
+      }
       break;
     case 'payment':
-      if (finances.cash >= amount) {
-        finances.cash -= amount;
-        finances.debt -= amount;
+      if (finances.debt >= amount) {
+        if (finances.cash >= amount) {
+          finances.cash -= amount;
+          finances.debt -= amount;
+        }
+        else {
+          alert(`Not enough cash for that, Cap'n.`);
+        }
+      }
+      else {
+        alert(`That's more than we owe, Cap'n`);
       }
       break;
   }
@@ -296,7 +310,7 @@ function buyCargo(itemSelectorName, amount) {
       finances.cash -= totalCost;
     }
     else {
-      alert('Insufficient funds.');
+      alert(`Sorry, Cap'n. ${finances.cash} just isn't enough to cover it.`);
     }
   }
   else {
