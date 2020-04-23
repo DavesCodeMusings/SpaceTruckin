@@ -23,7 +23,7 @@
     <h1 id="ship-name">SS Botany Bay</h1>
     <details>
       <summary>News: <span id="news-date">Jan 2038</span></summary>
-      <p id='news-headline'>
+      <p id="news-headline">
         Welcome to Space Truckin', the Solar System trading game.
       </p>
     </details>
@@ -66,31 +66,31 @@
         <tr class="highlight" onclick="updateSelectedItem('cargo', 0);">
           <td class="item-selector"><input name="cargo" type="radio" value="0" checked></td>
           <td><label for="0"><script>document.write(products[0].name);</script></label></td>
-          <td class="numeric" id='cargo-consumer-quantity'><script>document.write(ship.cargoHold[0]);</script></td>
-          <td class="numeric" id='cargo-consumer-price'><script>document.write(currentProductPrices[0]);</script></td>
+          <td class="numeric" id="cargo-consumer-quantity"><script>document.write(ship.cargoHold[0]);</script></td>
+          <td class="numeric" id="cargo-consumer-price"><script>document.write(currentProductPrices[0]);</script></td>
         </tr>
         <tr onclick="updateSelectedItem('cargo', 1);">
           <td class="item-selector"><input name="cargo" type="radio" value="1"></td>
           <td><label for="1"><script>document.write(products[1].name);</script></label></td>
-          <td class="numeric" id='cargo-food-quantity'><script>document.write(ship.cargoHold[1]);</script></td>
-          <td class="numeric" id='cargo-food-price'><script>document.write(currentProductPrices[1]);</script></td>
+          <td class="numeric" id="cargo-food-quantity"><script>document.write(ship.cargoHold[1]);</script></td>
+          <td class="numeric" id="cargo-food-price"><script>document.write(currentProductPrices[1]);</script></td>
         </tr>
         <tr onclick="updateSelectedItem('cargo', 2);">
           <td class="item-selector"><input name="cargo" type="radio" value="2"></td>
           <td><label for="2"><script>document.write(products[2].name);</script></label></td>
-          <td class="numeric" id='cargo-ore-quantity'><script>document.write(ship.cargoHold[2]);</script></td>
-          <td class="numeric" id='cargo-ore-price'><script>document.write(currentProductPrices[2]);</script></td>
+          <td class="numeric" id="cargo-ore-quantity"><script>document.write(ship.cargoHold[2]);</script></td>
+          <td class="numeric" id="cargo-ore-price"><script>document.write(currentProductPrices[2]);</script></td>
         </tr>
         <tr onclick="updateSelectedItem('cargo', 3);">
           <td class="item-selector"><input name="cargo" type="radio" value="3"></td>
           <td><label for="3"><script>document.write(products[3].name);</script></label></td>
-          <td class="numeric" id='cargo-heavy-quantity'><script>document.write(ship.cargoHold[3]);</script></td>
-          <td class="numeric" id='cargo-heavy-price'><script>document.write(currentProductPrices[3]);</script></td>
+          <td class="numeric" id="cargo-heavy-quantity"><script>document.write(ship.cargoHold[3]);</script></td>
+          <td class="numeric" id="cargo-heavy-price"><script>document.write(currentProductPrices[3]);</script></td>
         </tr>
       </table>
       <p class="input-group">
         <button onclick="buyCargo('cargo', Number(document.getElementById('cargo-quantity').value));" type="button">Buy</button>
-        <input id="cargo-quantity" type="number" min=0 max=50 placeholder="TEUs">
+        <input id="cargo-quantity" type="number" min="0" max="50" placeholder="TEUs">
         <button onclick="sellCargo('cargo', Number(document.getElementById('cargo-quantity').value));" type="button">Sell</button>
       </p>
     </details>
