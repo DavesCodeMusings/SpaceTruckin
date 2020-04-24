@@ -22,9 +22,10 @@ between 0 and 10%. With one operational gun, 0 and 20%. And, with no guns
 Why would there be less than two operational guns? Let's say, a lucky hit,
 maybe a 1 in 100 chance, an asteroid might impact the rail gun and disable
 it. Further, let's say that two asteroid encounters in a row will leave
-one of the guns overheated. Four in a row and both guns are too hot to use.
+one of the guns in need of an overhaul. Four in a row and both guns are
+down for overhaul.
 
-If the guns are down, all of the impact is taken by the shields. The
+If the guns are offline, all of the impact is taken by the shields. The
 shields will recharge, but slowly over time, say maybe 10% per turn. And,
 maybe an unlucky asteroid hits the shield generator itself, leaving just
 hull armor, and if the player is lucky, a working rail gun or two. Maybe
@@ -35,11 +36,13 @@ All of this should be fairly easy to implement using our rollDie() function.
 We just need to slip in these random event while the ship is in transit to
 the next destination. Something like the following should work:
 
-Roll for a storm. (1 in 20)
-If there's a storm, roll to see where the ship ended up. (1 through 7)
-Roll for an asteroid encounter. Maybe odd double near Ceres (since it's
-in the asteroid belt.) (1 in 20, 1 in 10 when going to Ceres.)
-If there's an asteroid hit, roll for shield depletion taking into account
-the rail guns. (0-10% with both guns, 0-25% one gun, 0-50% no guns.)
-If shields are depleted, one more hit and bam!
-If the ship's not a twisted mass of scrap, proceed to the new destination.
+1a) Roll for a storm. (1 in 10) That's maybe once every one and a half trips
+    around the Solar System
+1b) If there's a storm, roll to see where the ship ended up. (1 through 7)
+2a) Roll for an asteroid encounter. Maybe odd double near Ceres (since it's
+    in the asteroid belt.) (1 in 20, 1 in 10 when going to Ceres.)
+2b) If there's an asteroid hit, roll for shield depletion taking into account
+    the rail guns. (0-10% with both guns, 0-25% one gun, 0-50% no guns.)
+    If shields are depleted, one more hit and bam!
+    If the ship's not a twisted mass of scrap by now, proceed to the new
+    destination.

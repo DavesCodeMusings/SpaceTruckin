@@ -98,15 +98,15 @@
     <!-- Ship's Defenses -->
 
     <details>
-      <summary>Defenses: <span id="defense-summary">FAIR</span></summary>
+      <summary>Defenses: <span id="defenses-summary">GOOD</span></summary>
       <table>
         <tr>
-          <td>Shields:</td>
-          <td class="numeric">100%</td>
+          <td>Railguns:</td>
+          <td class="numeric" id="defenses-railguns"><script>document.write(ship.guns);</script></td>
         </tr>
         <tr>
-          <td>Railguns:</td>
-          <td class="numeric">0</td>
+          <td>Shields:</td>
+          <td class="numeric" id="defenses-shields"><script>document.write(`${ship.shieldStrength}%`)</script></td>
         </tr>
       </table>
     </details>
@@ -117,7 +117,7 @@
       <summary>Helm: <span id="helm-port-code">ETH</span></summary>
       <p id="helm-location-name">Shreveport Space Elevator, Earth</p>
       <p>Set new course, Captain?</p>
-      <p class="input-group">
+      <p class="input-group" id="helm-nav-buttons">
         <button class="nav-button" onclick="updateLocation(1);" title="Earth">ETH</button>
         <button class="nav-button" onclick="updateLocation(2);" title="Luna">LUN</button>
         <button class="nav-button" onclick="updateLocation(3);" title="Venus">VEN</button>
