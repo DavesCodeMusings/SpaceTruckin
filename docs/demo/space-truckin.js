@@ -48,7 +48,7 @@ var ship = {
   'name': 'SS Botany Bay',
   'cargoCapacity': 50,
   'cargoHold' : [20, 0, 0, 0],
-  'guns': 0,
+  'guns': 2,
   'shieldStrength': 100,
   'location': 1
 };
@@ -127,7 +127,8 @@ const headlines = [
   'Apophis returns, rather miffed at how things run in absense.',
   'Kessel Run speed record shattered.',
   'Doctors Voight and Kampff ask internet to help name new test.',
-  'World leaders cautiously optimistic as Karen speaks to manager.'
+  'World leaders cautiously optimistic as Karen speaks to manager.',
+  'Dysentery epidemic among passengers of SS Oregon Trail.'
 ];
 
 
@@ -387,19 +388,114 @@ function calculateCargoPrices() {
   updateCargo();
 }
 
+/* Display the number of rail guns and the current shield percentage. */
+function updateDefenses() {
+  let railguns = document.getElementById('defenses-railguns');
+  let shields = document.getElementById('defenses-shields');
+  let summary = document.getElementById('defenses-summary');
+  let condition = ['POOR', 'FAIR', 'GOOD'];
+  railguns.innerHTML = ship.guns;
+  shields.innerHTML = `${ship.shieldStrength}%`;
+  summary.innerHTML = condition[ship.guns];
+
+  // If the ship is toast, take away the ability to navigate.
+  if (ship.shieldStrength <= 0) {
+    summary.innerHTML = 'TOAST';
+    alert(`It's been a pleasure serving with you, Cap'n. See you on the other side.`);
+    clearTimeout(flightTime);
+  }
+}
+
+/* Roll to see if there's any asteroid activity that could cause damage.
+   The ammount of damage depends on rail gun and shield condition. The
+   chance of encounter doubles around Ceres (in the asteroid belt.)
+*/
+function encounterAsteroid(heading) {
+  let sidesOnDie = 20;
+  if (locations[heading].portCode == 'CER') {
+    sidesOnDie /= 2;
+  }
+
+  if (rollDie(sidesOnDie) == 1) {
+    setImage('asteroids.png');
+    if (ship.guns > 0) {
+      alert(`Asteroids, Cap'n!  Rail gun swinging into firing position.`);
+      if(rollDie(100) == 1) {
+        alert("Asteroid strike! Arrgh, we lost a gun, Cap'n.");
+        ship.guns--;
+      }
+      else {
+        alert(`Nailed it, Cap'n!`);
+      }
+    }
+    else {
+      switch(ship.guns) {
+        case 0:
+          hitPercent = rollDie(50);
+          break;
+        case 1:
+          hitPercent = rollDie(25);
+          break;
+        default:
+          hitPercent = rollDie(10);
+          break;
+      }
+
+      // Reduce shield strength, but not lower than zero.
+      ship.shieldStrength = Math.max(ship.shieldStrength - hitPercent, 0);
+      alert(`Asteroid Hit! Shields are down to ${ship.shieldStrength}%, Cap'n.`);
+    }
+  }
+  updateDefenses();
+}
+
+/*
+  Roll the die to see if there's a solar storm and if so, return the
+  new port number. Otherwise, return the original heading as if nothing
+  ever happened.
+*/
+function encounterStorm(heading) {
+  currentHeading = heading;
+  if (rollDie(10) == 0) {
+    heading = rollDie(6) + 1;
+    if (heading != currentHeading) {
+      alert(`A solar storm has blown us off course to ${locations[heading].name}.`)
+    }
+  }
+  return heading;
+}
+
+// Show or hide navigation buttons for state = block / state = none.
+function toggleNavigation(state) {
+  let navButtons = document.getElementById('helm-nav-buttons').children;
+  for (let i=0; i<navButtons.length; i++) {
+    if (state == 'on') {
+      navButtons[i].removeAttribute('disabled');
+    }
+    else if (state == 'off') {
+      navButtons[i].setAttribute('disabled', true);
+    }
+  }
+
+}
+
 function updateLocation(newLocation) {
   if (newLocation != ship.location) {
     let helmPortCode = document.getElementById('helm-port-code');
     let helmLocationName = document.getElementById('helm-location-name');
+    toggleNavigation('off');
 
     // Show the in-flight starfield while traveling.
     ship.location = 0;
     setImage('starfield.png');
     helmPortCode.innerHTML = locations[ship.location].portCode;
     helmLocationName.innerHTML = locations[ship.location].name;
+    encounterAsteroid(newLocation);
 
     // After a 'flight time' delay, update with new picture and info.
-    setTimeout(function () {
+    // Keep the return code from setTimeout so we can cancel it if needed. 
+    var flightTime = setTimeout(function () {
+      newLocation = encounterStorm(newLocation);
       ship.location = newLocation;
       applyInterest();
       calculateCargoPrices();
@@ -407,6 +503,7 @@ function updateLocation(newLocation) {
       setImage(locations[newLocation].image);
       helmPortCode.innerHTML = locations[newLocation].portCode;
       helmLocationName.innerHTML = locations[newLocation].name;
+      toggleNavigation('on');
     }, 3000);
   }
 }

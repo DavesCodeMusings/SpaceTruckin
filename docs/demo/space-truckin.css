@@ -84,7 +84,7 @@ details input[type="number"] {
   text-align: right;
 }
 
-#news-date, #finances-wallet, #cargo-summary, #defense-summary, #helm-port-code {
+#news-date, #finances-wallet, #cargo-summary, #defenses-summary, #helm-port-code {
   float: right;
 }
 
