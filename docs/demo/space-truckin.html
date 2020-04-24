@@ -52,7 +52,7 @@
       </table>
       <p class="input-group" id="finances-atm">
         <button onclick="useATM('deposit', Number(document.getElementById('finances-atm-amount').value));" type="button">Deposit</button>
-        <input id="finances-atm-amount" placeholder="cash" type="number">
+        <input class="numeric" id="finances-atm-amount" type="number" value="0">
         <button onclick="useATM('withdrawl', Number(document.getElementById('finances-atm-amount').value));" type="button">Withdrawl</button>
         <button onclick="useATM('payment', Number(document.getElementById('finances-atm-amount').value));" type="button">Pay Debt</button>
       </p>
@@ -90,7 +90,7 @@
       </table>
       <p class="input-group">
         <button onclick="buyCargo('cargo', Number(document.getElementById('cargo-quantity').value));" type="button">Buy</button>
-        <input id="cargo-quantity" type="number" min="0" max="50" placeholder="TEUs">
+        <input class="numeric" id="cargo-quantity" type="number" min="0" max="50" value="0">
         <button onclick="sellCargo('cargo', Number(document.getElementById('cargo-quantity').value));" type="button">Sell</button>
       </p>
     </details>
