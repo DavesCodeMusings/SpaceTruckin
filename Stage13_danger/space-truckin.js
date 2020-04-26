@@ -416,37 +416,40 @@ function encounterAsteroid(heading) {
     sidesOnDie /= 2;
   }
 
+  // Roll for a 1 in 20 (or 1 in 10) chance of an asteroid encounter.
   if (rollDie(sidesOnDie) == 1) {
     setImage('asteroids.png');
     if (ship.guns > 0) {
-      alert(`Asteroids, Cap'n!  Rail gun swinging into firing position.`);
+      alert(`Asteroids ahead, Cap'n!  Rail gun swinging into firing position.`);
+
+      // Roll for 1 in 100 chance of an asteroid taking out one of the rail guns.
       if(rollDie(100) == 1) {
-        alert("Asteroid strike! Arrgh, we lost a gun, Cap'n.");
+        alert("Arrgh, we lost a gun, Cap'n.");
         ship.guns--;
       }
-      else {
-        alert(`Nailed it, Cap'n!`);
-      }
-    }
-    else {
-      switch(ship.guns) {
-        case 0:
-          hitPercent = rollDie(50);
-          break;
-        case 1:
-          hitPercent = rollDie(25);
-          break;
-        default:
-          hitPercent = rollDie(10);
-          break;
-      }
 
-      // Reduce shield strength, but not lower than zero.
-      ship.shieldStrength = Math.max(ship.shieldStrength - hitPercent, 0);
-      alert(`Asteroid Hit! Shields are down to ${ship.shieldStrength}%, Cap'n.`);
+      // Otherwise, roll to what got past the ships defenses. More operational
+      // rail guns means less chance of getting hit.
+      else {
+        switch(ship.guns) {
+          case 0:
+            hitPercent = rollDie(50);
+            break;
+          case 1:
+            hitPercent = rollDie(25);
+            break;
+          default:
+            hitPercent = rollDie(10);
+            break;
+        }
+
+        // Reduce shield strength, but not lower than zero.
+        ship.shieldStrength = Math.max(ship.shieldStrength - hitPercent, 0);
+        alert(`A couple got through, Cap'n. Shields are down to ${ship.shieldStrength}%`);
+      }
     }
+    updateDefenses();
   }
-  updateDefenses();
 }
 
 /*
