@@ -468,6 +468,23 @@ function encounterStorm(heading) {
   return heading;
 }
 
+// The player risks being robbed if carrying too much cash around. 
+function encounterRobber(port) {
+  if (finances.cash > 100000) {
+    let sidesOnDie = 20;
+    if (locations[port].portCode == 'MRS') {
+      sidesOnDie /= 2;
+    }
+    if (rollDie(sidesOnDie) == 1) {
+      alert(`Bad news, Cap'n. We've been robbed!`);
+      let percentLost = rollDie(100);
+      let cashLost = Math.round(finances.cash * percentLost / 100);
+      alert(`We lost ${cashLost} in cash.`);
+      finances.cash -= cashLost;
+    }
+  }
+}
+
 // Show or hide navigation buttons for state = block / state = none.
 function toggleNavigation(state) {
   let navButtons = document.getElementById('helm-nav-buttons').children;
@@ -479,7 +496,6 @@ function toggleNavigation(state) {
       navButtons[i].setAttribute('disabled', true);
     }
   }
-
 }
 
 function updateLocation(newLocation) {
@@ -500,6 +516,7 @@ function updateLocation(newLocation) {
     var flightTime = setTimeout(function () {
       newLocation = encounterStorm(newLocation);
       ship.location = newLocation;
+      encounterRobber(ship.location);
       applyInterest();
       calculateCargoPrices();
       updateNews();
