@@ -27,6 +27,12 @@ function preloadImages() {
   var saturnImg = new Image('images/saturn.png');
 }
 
+/* Play a short bit of audio when the game first loads. */
+function playIntroRiff() {
+  var introRiff = new Audio('audio/Almost_Space_Truckin.ogg');
+  introRiff.play();
+}
+
 /*
   rollDie returns a number between zero and sides - 1, so for a six-
   sided die, the possible outcomes are 0 - 5. To simulate two six-sided
